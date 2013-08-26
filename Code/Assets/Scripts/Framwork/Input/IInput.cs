@@ -4,10 +4,10 @@ namespace Moth
 {
 	public interface IInput 
 	{
-		Vector2 MousePosition{ get ; }
-		bool OnPress{get ;}
-		bool OnLongPress{get ;}
-		bool OnRelease{get ;}
+		Vector2 MousePosition{ get; }
+		bool OnPressOn{ get; }
+		bool OnPressDown{ get; }
+		bool OnPressUp{ get;}
 	}
 	
 }

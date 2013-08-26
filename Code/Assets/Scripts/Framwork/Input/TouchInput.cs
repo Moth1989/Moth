@@ -10,20 +10,20 @@ namespace Moth
 				return Input.GetTouch(0).position;
 			}
 		}
-		public bool OnLongPress {
+		public bool OnPressOn {
 			get {
 				if(Input.touchCount>1) return false;
 				TouchPhase phase=Input.GetTouch(0).phase;
 				return phase==TouchPhase.Stationary||phase==TouchPhase.Moved;
 			}
 		}
-		public bool OnPress {
+		public bool OnPressDown {
 			get {
 				if(Input.touchCount>1) return false;
 				return Input.GetTouch(0).phase==TouchPhase.Began;
 			}
 		}
-		public bool OnRelease {
+		public bool OnPressUp {
 			get {
 				if(Input.touchCount>1) return false;
 				return Input.GetTouch(0).phase==TouchPhase.Ended;

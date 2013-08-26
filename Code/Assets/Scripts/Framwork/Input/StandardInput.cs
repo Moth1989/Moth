@@ -4,23 +4,25 @@ using System.Collections;
 namespace Moth
 {
 	public class StandardInput : IInput {
-	
+		
 		public Vector2 MousePosition {
 			get {
 				return new Vector2(Input.mousePosition.x,Input.mousePosition.y);
 			}
 		}
-		public bool OnPress {
+		public bool OnPressDown {
 			get {
 				return Input.GetMouseButtonDown(0);
 			}
 		}
-		public bool OnRelease {
+		
+		public bool OnPressUp {
 			get {
 				return Input.GetMouseButtonUp(0);
 			}
 		}
-		public bool OnLongPress {
+		
+		public bool OnPressOn {
 			get {
 				return Input.GetMouseButton(0);
 			}

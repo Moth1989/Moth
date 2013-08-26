@@ -4,7 +4,18 @@ using System.Collections;
 namespace Moth
 {
 	public class InputController : MothBehaviour , IInput {
-		
+		public bool isEnable=true;
+		public bool IsEnable
+		{
+			get
+			{
+				return isEnable;
+			}
+			set
+			{
+				isEnable=value;
+			}
+		}
 		private static InputController controller=null;
 		public static InputController Controller
 		{
@@ -70,41 +81,32 @@ namespace Moth
 				return mInput;
 			}
 		}
-		void Awake()
-		{
-			if(controller==null) controller=this;
-		}
-		void OnEnable()
-		{
-			if(controller==null) controller=this;
-		}
 		void OnDestory()
 		{
 			Clear();
-			if(controller==null) controller=null;
+			if(controller==this) controller=null;
 		}
-		
 		public Vector2 MousePosition {
 			get {
-				throw new System.NotImplementedException ();
+				return input.MousePosition;
 			}
 		}
-		
-		public bool OnLongPress {
+		public bool OnPressDown {
 			get {
-				throw new System.NotImplementedException ();
+				if(!isEnable){ return false; }
+				return input.OnPressDown;
 			}
 		}
-		
-		public bool OnPress {
+		public bool OnPressOn {
 			get {
-				throw new System.NotImplementedException ();
+				if(!isEnable){ return false; }
+				return input.OnPressOn;
 			}
 		}
-		
-		public bool OnRelease {
+		public bool OnPressUp {
 			get {
-				throw new System.NotImplementedException ();
+				if(!isEnable){ return false; }
+				return input.OnPressUp;
 			}
 		}
 	}

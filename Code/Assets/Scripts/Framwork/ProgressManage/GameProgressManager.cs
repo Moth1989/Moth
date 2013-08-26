@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using Moth;
 public class GameProgressManager:MothBehaviour
 {
-	private GameProgressManager instance=null;
-	public GameProgressManager Instance
+	private static GameProgressManager instance=null;
+	public static GameProgressManager Instance
 	{
 		get
 		{
