@@ -1,8 +1,19 @@
 using UnityEngine;
 using System.Collections;
 
+
 namespace Moth
 {
+	public interface IInit {
+		
+		bool Init();
+	}
+	
+	public interface IClear
+	{
+		void Clear();
+	}
+	
 	public interface ITarget 
 	{
 	

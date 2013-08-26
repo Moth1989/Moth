@@ -16,15 +16,26 @@ namespace Moth
 					if(controller==null)
 					{
 						GameObject go=new GameObject("InputController");
-						go.transform.parent=GameContainer.ManagerContainer.transform;
-						DontDestroyOnLoad(go);
+						go.transform.parent=GameManager.Single.transform;
 						controller=go.AddComponent<InputController>();
 					}
 				}
+				controller.Init();
 				return controller;
 			}
 		}
-		
+		public override bool Init ()
+		{
+			if(base.Init ())
+			{
+				mInput=null;
+			}
+			return false;
+		}
+		public override void Clear ()
+		{
+			Init();
+		}
 		private IInput mInput=null;
 		private IInput input
 		{
@@ -69,6 +80,7 @@ namespace Moth
 		}
 		void OnDestory()
 		{
+			Clear();
 			if(controller==null) controller=null;
 		}
 		

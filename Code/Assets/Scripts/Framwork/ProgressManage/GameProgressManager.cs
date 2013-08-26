@@ -11,14 +11,33 @@ public class GameProgressManager:MothBehaviour
 		{
 			if(instance==null)
 			{
-				instance=GameContainer.ManagerContainer.GetComponent< GameProgressManager >();
+				instance=GameManager.Container.GetComponent< GameProgressManager >();
 				if(instance==null)
 				{
-					instance=GameContainer.ManagerContainer.AddComponent< GameProgressManager >();
+					instance=GameManager.Container.AddComponent< GameProgressManager >();
 				}
 			}
+			instance.Init();
 			return instance;
 		}
+	}
+	public override bool Init ()
+	{
+		if(base.Init())
+		{
+			GameProgressList=new List<GameProgress>();
+			GameProgressPushList=new List<GameProgress>();
+			popCount=0;
+			return true;
+		}
+		return false;
+	}
+	
+	public override void Clear ()
+	{
+		GameProgressList=null;
+		GameProgressPushList=null;
+		popCount=0;
 	}
 	void Awake()
 	{
@@ -30,9 +49,7 @@ public class GameProgressManager:MothBehaviour
 	}
 	void OnDestroy()
 	{
-		GameProgressList=null;
-		GameProgressPushList=null;
-		popCount=0;
+		Clear();
 		if( instance == this ) { instance = null; }
 	}
 	// 检查进程是否已经在队列之中 rr
@@ -49,9 +66,9 @@ public class GameProgressManager:MothBehaviour
 		}
 	}
 	// 游戏进程队列 rr
-	private List<GameProgress> GameProgressList=new List<GameProgress>();
+	private List<GameProgress> GameProgressList=null;
 	// 等待放入游戏进程的队列 rr
-	private List<GameProgress> GameProgressPushList=new List<GameProgress>();
+	private List<GameProgress> GameProgressPushList=null;
 	
 	// 需要从游戏进程队列中抛弃的进程数量 rr
 	private int popCount=0;
